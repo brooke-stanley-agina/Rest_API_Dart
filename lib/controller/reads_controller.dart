@@ -6,16 +6,16 @@ import 'package:my_app/model/read.dart';
 
 
 List reads = [
-  {
+ Read()..readFromMap( {
     'title': 'Head First Design Patterns',
     'author': 'Eric Freeman',
     'year': 2004
-  },
-  {
+  }),
+  Read()..readFromMap({
     'title': 'Clean Code: A handbook of Agile Software Craftsmanship',
     'author': 'Robert C. Martin',
     'year': 2008
-  },
+  }),
   {
     'title': 'Code Complete: A Practical Handbook of Software Construction',
     'author': 'Steve McConnell',
