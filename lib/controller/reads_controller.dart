@@ -5,7 +5,7 @@ import 'package:my_app/my_app.dart';
 import 'package:my_app/model/read.dart';
 
 
-List reads = [
+List<Read> reads = [
  Read()..readFromMap( {
     'title': 'Head First Design Patterns',
     'author': 'Eric Freeman',
@@ -43,18 +43,19 @@ class ReadsController extends ResourceController{
 
   @Operation.post()
   Future<Response> createdNewRead(@Bind.body() Read body) async{
-    final Map<String, dynamic> body =  request.body.as();
+    
 
     reads.add(body);
     return Response.ok(body);
   }
 
   @Operation.put('id')
-  Future<Response> updatedRead(@Bind.path('id') int id) async{
+  Future<Response> updatedRead(@Bind.path('id') int id, 
+  @Bind.body() Read body,) async{
     if( id < 0 || id > reads.length - 1 ){
       return Response.notFound(body:'Item not found.');
     }
-    final Map<String, dynamic> body =  request.body.as();
+    
     reads[id] = body;
     return Response.ok('updated new read');
   }
