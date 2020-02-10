@@ -28,7 +28,7 @@ List<Read> reads = [
 
 class ReadsController extends ResourceController{
   @Operation.get()
-  Future<Response> getAllReads() async => Response.ok(reads);
+  Future<Response> getAllReads() async => Response.ok(Read);
 
   @Operation.get('id')
   Future<Response> getRead(@Bind.path('id') int id, @Bind.body() Read body) async{
