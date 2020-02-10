@@ -26,8 +26,7 @@ class MyAppChannel extends ApplicationChannel {
   ///
   /// This method is invoked after [prepare].
   @override
-  Controller get entryPoint {
-    final router = Router()
+  Controller get entryPoint => Router()
 
     ..route('/reads/[:id]').link(() => ReadsController())
 
@@ -40,7 +39,4 @@ class MyAppChannel extends ApplicationChannel {
       final client = await File('client.html').readAsString();
       return Response.ok(client)..contentType=ContentType.html;
     });
-
-    return router;
-  }
 }
