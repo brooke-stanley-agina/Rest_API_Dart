@@ -31,7 +31,7 @@ class ReadsController extends ResourceController{
   Future<Response> getAllReads() async => Response.ok(reads);
 
   @Operation.get('id')
-  Future<Response> getRead(@Bind.path('id') int id, @Bind.body() Read body) async{
+  Future<Response> getRead(@Bind.path('id') int id) async{
     if(id < 0 || id > reads.length-1){
       return Response.notFound(body:'Item not found');
     }
