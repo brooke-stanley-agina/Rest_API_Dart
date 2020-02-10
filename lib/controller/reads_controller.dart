@@ -7,19 +7,19 @@ import 'package:my_app/model/read.dart';
 
 List<Read> reads = [
  Read()
- ..readFromMap( {
+   ..readFromMap( {
     'title': 'Head First Design Patterns',
     'author': 'Eric Freeman',
     'year': 2004
   }),
   Read()
-  ..readFromMap({
+    ..readFromMap({
     'title': 'Clean Code: A handbook of Agile Software Craftsmanship',
     'author': 'Robert C. Martin',
     'year': 2008
   }),
   Read()
-  ..readFromMap({
+    ..readFromMap({
     'title': 'Code Complete: A Practical Handbook of Software Construction',
     'author': 'Steve McConnell',
     'year': 2004
