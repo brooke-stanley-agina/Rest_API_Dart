@@ -6,17 +6,20 @@ import 'package:my_app/model/read.dart';
 
 
 List<Read> reads = [
- Read()..readFromMap( {
+ Read()
+ ..readFromMap( {
     'title': 'Head First Design Patterns',
     'author': 'Eric Freeman',
     'year': 2004
   }),
-  Read()..readFromMap({
+  Read()
+  ..readFromMap({
     'title': 'Clean Code: A handbook of Agile Software Craftsmanship',
     'author': 'Robert C. Martin',
     'year': 2008
   }),
-  Read()..readFromMap({
+  Read()
+  ..readFromMap({
     'title': 'Code Complete: A Practical Handbook of Software Construction',
     'author': 'Steve McConnell',
     'year': 2004
@@ -33,7 +36,7 @@ class ReadsController extends ResourceController{
   }
 
   @Operation.get('id')
-  Future<Response> getRead(@Bind.path('id') int id) async{
+  Future<Response> getRead(@Bind.path('id') int id, @Bind.body() Read body) async{
     if(id < 0 || id > reads.length-1){
       return Response.notFound(body:'Item not found');
     }
