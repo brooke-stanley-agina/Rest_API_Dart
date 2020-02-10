@@ -2,7 +2,7 @@
 
 
 import 'package:my_app/my_app.dart';
-
+import 'package:my_app/model/read.dart';
 
 
 List reads = [
@@ -42,7 +42,7 @@ class ReadsController extends ResourceController{
   }
 
   @Operation.post()
-  Future<Response> createdNewRead() async{
+  Future<Response> createdNewRead(@Bind.body() Read body) async{
     final Map<String, dynamic> body =  request.body.as();
 
     reads.add(body);
