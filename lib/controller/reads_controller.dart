@@ -27,13 +27,8 @@ List<Read> reads = [
 ];
 
 class ReadsController extends ResourceController{
-  @override
- 
-
   @Operation.get()
-  Future<Response> getAllowed() async{
-    return Response.ok(reads);
-  }
+  Future<Response> getAllReads() async => Response.ok(reads);
 
   @Operation.get('id')
   Future<Response> getRead(@Bind.path('id') int id, @Bind.body() Read body) async{
