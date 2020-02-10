@@ -16,11 +16,11 @@ List reads = [
     'author': 'Robert C. Martin',
     'year': 2008
   }),
-  {
+  Read()..readFromMap({
     'title': 'Code Complete: A Practical Handbook of Software Construction',
     'author': 'Steve McConnell',
     'year': 2004
-  },
+  }),
 ];
 
 class ReadsController extends ResourceController{
