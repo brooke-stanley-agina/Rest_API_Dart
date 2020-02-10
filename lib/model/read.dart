@@ -14,10 +14,10 @@ class Read extends Serializable{
   
 
   @override
-  void readFromMap(Map<String, dynamic> requestBody){
-   title = requestBody['title'] as String;
-   author = requestBody['author'] as String;
-   year = requestBody['title'] as int;
+  void readFromMap(Map<String, dynamic> object){
+   title = object['title'] as String;
+   author = object['author'] as String;
+   year = object['title'] as int;
   }
 
 }
