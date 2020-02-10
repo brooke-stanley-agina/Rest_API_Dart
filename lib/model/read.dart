@@ -14,7 +14,7 @@ class Read extends Serializable{
   
 
   @override
-  Future<void> readFromMap(Map<String, dynamic> requestBody){
+  Future<void> readFromMap(Map<String, dynamic> requestBody) async {
    title = requestBody['title'] as String;
    author = requestBody['author'] as String;
    year = requestBody['title'] as int;
