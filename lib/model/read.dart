@@ -11,7 +11,7 @@ class _Read{
 
   @Column(unique: true)
   String title;
-  
+
   @Column()
   String author;
 
