@@ -32,6 +32,15 @@ class Migration1 extends Migration {
     'year': 2004
   },
   ];
+  for (final read in reads){
+    await database.store.execute('INSERT INTO _Read(title, author, year) VALUES (@title, @auther, @year)',
+     substitutionValues: {
+       'title': read['title'],
+       'author': read['author'],
+       'year': read['year']
+     }
+    );
+  }
 }
 }
     
