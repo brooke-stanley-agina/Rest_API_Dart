@@ -36,7 +36,7 @@ class MyAppChannel extends ApplicationChannel {
   @override
   Controller get entryPoint => Router()
 
-    ..route('/reads/[:id]').link(() => ReadsController())
+    ..route('/reads/[:id]').link(() => ReadsController(context))
 
     //
     ..route('/').linkFunction((request) => 
