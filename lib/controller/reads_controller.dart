@@ -5,30 +5,20 @@ import 'package:my_app/my_app.dart';
 import 'package:my_app/model/read.dart';
 
 
-List<Read> reads = [
- Read()
-   ..readFromMap( {
-    'title': 'Head First Design Patterns',
-    'author': 'Eric Freeman',
-    'year': 2004
-  }),
-  Read()
-    ..readFromMap({
-    'title': 'Clean Code: A handbook of Agile Software Craftsmanship',
-    'author': 'Robert C. Martin',
-    'year': 2008
-  }),
-  Read()
-    ..readFromMap({
-    'title': 'Code Complete: A Practical Handbook of Software Construction',
-    'author': 'Steve McConnell',
-    'year': 2004
-  }),
-];
 
+List reads = [];
 class ReadsController extends ResourceController{
+
+  ReadsController(this.context);
+
+  ManagedContext context;
+
   @Operation.get()
-  Future<Response> getAllReads() async => Response.ok(reads);
+  Future<Response> getAllReads() async {
+    final readQuery = Query<Read>(context);
+
+   return Response.ok(await readQuery.fetch());
+  } 
 
   @Operation.get('id')
   Future<Response> getRead(@Bind.path('id') int id) async{
