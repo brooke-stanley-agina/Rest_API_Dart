@@ -15,6 +15,23 @@ class Migration1 extends Migration {
   Future downgrade() async {}
   
   @override
-  Future seed() async {}
+  Future seed() async {
+     final List<Map> reads =[ {
+    'title': 'Head First Design Patterns',
+    'author': 'Eric Freeman',
+    'year': 2004
+  },
+  {
+    'title': 'Clean Code: A handbook of Agile Software Craftsmanship',
+    'author': 'Robert C. Martin',
+    'year': 2008
+  },
+ {
+    'title': 'Code Complete: A Practical Handbook of Software Construction',
+    'author': 'Steve McConnell',
+    'year': 2004
+  },
+  ];
+}
 }
     
