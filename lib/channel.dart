@@ -24,6 +24,7 @@ class MyAppChannel extends ApplicationChannel {
        5432, 
       'my_app_official'
       );
+      context = ManagedContext(dataModel, persistentStore);
   }
 
   /// Construct the request channel.
