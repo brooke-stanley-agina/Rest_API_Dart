@@ -29,7 +29,7 @@ class ReadsController extends ResourceController{
       return Response.notFound(body:'Item not found');
     }
     
-    return Response.ok(reads[id]);
+    return Response.ok(reads);
   }
 
   @Operation.post()
