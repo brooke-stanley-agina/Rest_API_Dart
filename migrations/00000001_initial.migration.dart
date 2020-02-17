@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'package:aqueduct/aqueduct.dart';   
+import 'package:aqueduct/aqueduct.dart';
 
-class Migration1 extends Migration { 
+class Migration1 extends Migration {
   @override
   Future upgrade() async {
    		database.createTable(SchemaTable("_Read", [
