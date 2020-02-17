@@ -22,8 +22,10 @@ class ReadsController extends ResourceController{
 
   @Operation.get('id')
   Future<Response> getRead(@Bind.path('id') int id) async{
-  final readQuery = Query<Read>(context);
-    if(id < 0 || id > reads.length-1){
+  final readQuery = Query<Read>(context)
+  ..where((read) => read.id).equalTo(id);
+  final read = await readQuery.fetchOne();
+    if(read == null ){
       return Response.notFound(body:'Item not found');
     }
     
