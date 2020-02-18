@@ -6,7 +6,7 @@ import 'package:my_app/model/read.dart';
 
 
 
-List reads = [];
+
 class ReadsController extends ResourceController{
 
   ReadsController(this.context);
@@ -42,21 +42,25 @@ class ReadsController extends ResourceController{
   @Operation.put('id')
   Future<Response> updatedRead(@Bind.path('id') int id,
   @Bind.body() Read body,) async{
-    final readQuery = Query<Read>(context)..where((read) => read.id).equalTo(id);
-    if( id < 0 || id > reads.length - 1 ){
+    final readQuery = Query<Read>(context)
+    ..values=body
+    ..where((read) => read.id).equalTo(id);
+    final updatedQuery = await readQuery.updateOne();
+    if( updatedQuery ==null ){
       return Response.notFound(body:'Item not found.');
     }
-    
-    reads[id] = body;
-    return Response.ok('updated new read');
+    return Response.ok(updatedQuery);
   }
 
   @Operation.delete('id')
   Future<Response> deletedRead(@Bind.path('id') int id) async{
-    if( id < 0 || id > reads.length - 1 ){
+    final readQuery = Query<Read>(context)
+    ..where((read) => read.id).equalTo(id);
+    final int deleteCount = await readQuery.delete();
+    if( deleteCount == 0 ){
       return Response.notFound(body:'Item not found.');
     }
-    reads.removeAt(id);
-    return Response.ok('Deleted read');
+   
+    return Response.ok('Deleted $deleteCount items.');
   }
 }
