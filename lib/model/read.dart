@@ -1,6 +1,7 @@
 import 'package:my_app/my_app.dart';
 
 class Read extends ManagedObject<_Read> implements _Read{
+  @Serialize()
    String get detail => '$title by $author';
 
 }

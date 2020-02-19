@@ -19,10 +19,11 @@ export 'package:aqueduct/aqueduct.dart';
 ///           });
 ///         }
 ///
-class Harness extends TestHarness<MyAppChannel> {
+class Harness extends TestHarness<MyAppChannel> with TestHarnessORMMixin{
+  ManagedContext get context => channel.context;
   @override
   Future onSetUp() async {
-
+    await resetData();
   }
 
   @override

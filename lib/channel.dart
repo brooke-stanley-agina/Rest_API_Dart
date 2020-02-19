@@ -4,9 +4,7 @@ import 'my_app.dart';
 
 
 /// This type initializes an application.
-///
-/// Override methods in this class to set up routes and initialize services like
-/// database connections. See http://aqueduct.io/docs/http/channel/.
+
 class MyAppChannel extends ApplicationChannel {
   ManagedContext context;
 
@@ -15,24 +13,21 @@ class MyAppChannel extends ApplicationChannel {
   @override
   Future prepare() async {
     logger.onRecord.listen((rec) => print("$rec ${rec.error ?? ""} ${rec.stackTrace ?? ""}"));
-
+    
+    final config = ReadConfig(options.configurationFilePath);
     final dataModel = ManagedDataModel.fromCurrentMirrorSystem();
     final persistentStore = PostgreSQLPersistentStore.fromConnectionInfo(
-      'my_app_user', 
-      'password', 
-      'localhost', 
-       5432, 
-      'my_app_official'
+       config.database.username, 
+       config.database.password, 
+       config.database.host, 
+       config.database.port, 
+       config.database.databaseName
       );
       context = ManagedContext(dataModel, persistentStore);
   }
 
   /// Construct the request channel.
-  ///
-  /// Return an instance of some [Controller] that will be the initial receiver
-  /// of all [Request]s.
-  ///
-  /// This method is invoked after [prepare].
+  
   @override
   Controller get entryPoint => Router()
 
@@ -47,4 +42,10 @@ class MyAppChannel extends ApplicationChannel {
       final client = await File('client.html').readAsString();
       return Response.ok(client)..contentType=ContentType.html;
     });
+}
+
+class ReadConfig extends Configuration{
+  ReadConfig(String path): super.fromFile(File(path));
+
+  DatabaseConfiguration database;
 }

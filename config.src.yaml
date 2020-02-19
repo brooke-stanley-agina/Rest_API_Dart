@@ -1,0 +1,6 @@
+database:
+    host: localhost
+    port: 5432
+    username: my_app_user
+    password: password
+    databaseName: my_app_official_test
